@@ -1,0 +1,32 @@
+import { Book } from './book';
+import { books } from './book-collection';
+/**
+ * Находит книгу по жанру и количеству страниц
+ *
+ * @param {string} genre Жанр
+ * @param {number} pageAmount Количество страниу
+ * @returns {Book}
+ */
+export function findSuitableBook(genre, pageAmount, multipleRecommendations = true) {
+    const findAlgorithm = (book) => book.genre === genre && book.price <= pageAmount;
+    if (multipleRecommendations) {
+        return books.filter(findAlgorithm);
+    }
+    return books.find(findAlgorithm);
+}
+/**
+ * Возвращает переданный параметром объект в виде строки.
+ *
+ * @param {unknown} value - входной параметр, обычно типа object.
+ * @returns {string} - сериализованный объект.
+ */
+export function serialize(value) {
+    if (value === null || undefined) {
+        return value + '';
+    }
+    if (value instanceof Book) {
+        return `${value.name}, ${value.genre}, ${value.price}`;
+    }
+    return value.toString();
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidXRpbHMuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi9zcmMvdXRpbHMudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsT0FBTyxFQUFDLElBQUksRUFBQyxNQUFNLFFBQVEsQ0FBQztBQUM1QixPQUFPLEVBQUMsS0FBSyxFQUFDLE1BQU0sbUJBQW1CLENBQUM7QUFFeEM7Ozs7OztHQU1HO0FBQ0gsTUFBTSxVQUFVLGdCQUFnQixDQUFFLEtBQWEsRUFBRSxVQUFrQixFQUFFLHVCQUF1QixHQUFHLElBQUk7SUFDakcsTUFBTSxhQUFhLEdBQUcsQ0FBQyxJQUFVLEVBQUUsRUFBRSxDQUFDLElBQUksQ0FBQyxLQUFLLEtBQUssS0FBSyxJQUFJLElBQUksQ0FBQyxLQUFLLElBQUksVUFBVSxDQUFDO0lBRXZGLElBQUksdUJBQXVCLEVBQUU7UUFDM0IsT0FBTyxLQUFLLENBQUMsTUFBTSxDQUFDLGFBQWEsQ0FBQyxDQUFDO0tBQ3BDO0lBRUQsT0FBTyxLQUFLLENBQUMsSUFBSSxDQUFDLGFBQWEsQ0FBQyxDQUFDO0FBQ25DLENBQUM7QUFFRDs7Ozs7R0FLRztBQUNILE1BQU0sVUFBVSxTQUFTLENBQUUsS0FBYztJQUN2QyxJQUFJLEtBQUssS0FBSyxJQUFJLElBQUksU0FBUyxFQUFFO1FBQy9CLE9BQU8sS0FBSyxHQUFHLEVBQUUsQ0FBQztLQUNuQjtJQUVELElBQUksS0FBSyxZQUFZLElBQUksRUFBRTtRQUN6QixPQUFPLEdBQUcsS0FBSyxDQUFDLElBQUksS0FBSyxLQUFLLENBQUMsS0FBSyxLQUFLLEtBQUssQ0FBQyxLQUFLLEVBQUUsQ0FBQztLQUN4RDtJQUVELE9BQU8sS0FBSyxDQUFDLFFBQVEsRUFBRSxDQUFDO0FBQzFCLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQge0Jvb2t9IGZyb20gJy4vYm9vayc7XHJcbmltcG9ydCB7Ym9va3N9IGZyb20gJy4vYm9vay1jb2xsZWN0aW9uJztcclxuXHJcbi8qKlxyXG4gKiDQndCw0YXQvtC00LjRgiDQutC90LjQs9GDINC/0L4g0LbQsNC90YDRgyDQuCDQutC+0LvQuNGH0LXRgdGC0LLRgyDRgdGC0YDQsNC90LjRhlxyXG4gKiBcclxuICogQHBhcmFtIHtzdHJpbmd9IGdlbnJlINCW0LDQvdGAXHJcbiAqIEBwYXJhbSB7bnVtYmVyfSBwYWdlQW1vdW50INCa0L7Qu9C40YfQtdGB0YLQstC+INGB0YLRgNCw0L3QuNGDXHJcbiAqIEByZXR1cm5zIHtCb29rfVxyXG4gKi9cclxuZXhwb3J0IGZ1bmN0aW9uIGZpbmRTdWl0YWJsZUJvb2sgKGdlbnJlOiBzdHJpbmcsIHBhZ2VBbW91bnQ6IG51bWJlciwgbXVsdGlwbGVSZWNvbW1lbmRhdGlvbnMgPSB0cnVlKTogQm9vayB8IEJvb2tbXSB8IHVuZGVmaW5lZCB7XHJcbiAgY29uc3QgZmluZEFsZ29yaXRobSA9IChib29rOiBCb29rKSA9PiBib29rLmdlbnJlID09PSBnZW5yZSAmJiBib29rLnByaWNlIDw9IHBhZ2VBbW91bnQ7XHJcblxyXG4gIGlmIChtdWx0aXBsZVJlY29tbWVuZGF0aW9ucykge1xyXG4gICAgcmV0dXJuIGJvb2tzLmZpbHRlcihmaW5kQWxnb3JpdGhtKTtcclxuICB9XHJcblxyXG4gIHJldHVybiBib29rcy5maW5kKGZpbmRBbGdvcml0aG0pO1xyXG59XHJcblxyXG4vKipcclxuICog0JLQvtC30LLRgNCw0YnQsNC10YIg0L/QtdGA0LXQtNCw0L3QvdGL0Lkg0L/QsNGA0LDQvNC10YLRgNC+0Lwg0L7QsdGK0LXQutGCINCyINCy0LjQtNC1INGB0YLRgNC+0LrQuC5cclxuICogXHJcbiAqIEBwYXJhbSB7dW5rbm93bn0gdmFsdWUgLSDQstGF0L7QtNC90L7QuSDQv9Cw0YDQsNC80LXRgtGALCDQvtCx0YvRh9C90L4g0YLQuNC/0LAgb2JqZWN0LlxyXG4gKiBAcmV0dXJucyB7c3RyaW5nfSAtINGB0LXRgNC40LDQu9C40LfQvtCy0LDQvdC90YvQuSDQvtCx0YrQtdC60YIuXHJcbiAqL1xyXG5leHBvcnQgZnVuY3Rpb24gc2VyaWFsaXplICh2YWx1ZTogdW5rbm93bikge1xyXG4gIGlmICh2YWx1ZSA9PT0gbnVsbCB8fCB1bmRlZmluZWQpIHtcclxuICAgIHJldHVybiB2YWx1ZSArICcnO1xyXG4gIH1cclxuXHJcbiAgaWYgKHZhbHVlIGluc3RhbmNlb2YgQm9vaykge1xyXG4gICAgcmV0dXJuIGAke3ZhbHVlLm5hbWV9LCAke3ZhbHVlLmdlbnJlfSwgJHt2YWx1ZS5wcmljZX1gO1xyXG4gIH1cclxuXHJcbiAgcmV0dXJuIHZhbHVlLnRvU3RyaW5nKCk7XHJcbn1cclxuIl19
