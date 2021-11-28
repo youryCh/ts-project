@@ -1,4 +1,4 @@
-import {IAuthor, TReview} from './models';
+import {Genre, IAuthor, IProduct, TReview} from './models.js';
 
 export const reviews: TReview[] = [
   ['John', 5, 'It is my fovarite book'],
@@ -9,4 +9,18 @@ export const reviews: TReview[] = [
 export const author: IAuthor = {
   firstName: 'Ivan',
   lastName: 'Denisovich',
+  rating: 4,
+};
+
+export const notepad: IProduct = {
+  price: 40,
+  getProductDescription: () => {
+    return 'Notepad 50 pages';
+  }
+}
+
+export const genreMapping = {
+  [Genre.adventure]: 'Adventure',
+  [Genre.fantasy]: 'Fantasy',
+  [Genre.horror]: 'Horror',
 };
