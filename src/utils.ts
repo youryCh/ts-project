@@ -1,7 +1,7 @@
 import {Book} from './book.js';
-import {books} from './book-collection.js';
+import {programmingLiterature as books} from './book-collection.js';
 import {IRatingable, IProduct, Genre} from './models.js';
-import { genreMapping } from './constants.js';
+import {genreMapping} from './constants.js';
 
 /**
  * Находит книгу по жанру и количеству страниц
@@ -10,15 +10,15 @@ import { genreMapping } from './constants.js';
  * @param {number} pageAmount Количество страниу
  * @returns {Book}
  */
-export function findSuitableBook (genre: Genre, pageAmount: number, multipleRecommendations = true): Book | Book[] | undefined {
-  const findAlgorithm = (book: Book) => book.genre === genre && book.price <= pageAmount;
+// export function findSuitableBook (genre: Genre, pageAmount: number, multipleRecommendations = true): Book | Book[] | undefined {
+//   const findAlgorithm = (book: Book) => book.genre === genre && book.price <= pageAmount;
 
-  if (multipleRecommendations) {
-    return books.filter(findAlgorithm);
-  }
+// if (multipleRecommendations) {
+//   return books.get(findAlgorithm);
+// }
 
-  return books.find(findAlgorithm);
-}
+// return books.get(findAlgorithm());
+// }
 
 /**
  * Возвращает переданный параметром объект в виде строки.

@@ -1,4 +1,11 @@
-import {Genre, IAuthor, IBook, IProduct, IRatingable, TReview} from './models';
+import {
+  Genre,
+  IAuthor,
+  IBook,
+  IProduct,
+  IRatingable,
+  TReview
+} from './models';
 
 export class Book implements IBook, IRatingable, IProduct {
   name: string;
@@ -15,8 +22,8 @@ export class Book implements IBook, IRatingable, IProduct {
     name: string,
     genre: Genre,
     price: number,
-    reviews?: TReview[],
     author?: IAuthor,
+    reviews?: TReview[],
   ) {
     this.name = name;
     this.genre = genre;

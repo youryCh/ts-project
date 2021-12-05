@@ -1,3 +1,5 @@
+import {Book} from './book';
+
 export type TReview = [string, number, string];
 
 export interface IBook {
@@ -22,4 +24,8 @@ export interface IProduct {
   getProductDescription(): string;
 }
 
-export enum Genre {fantasy, adventure, horror}
+export enum Genre {fantasy, adventure, horror, programming}
+
+export interface IBookCollection<T> {
+  [key: string]: T;
+}
