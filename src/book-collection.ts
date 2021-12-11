@@ -1,11 +1,11 @@
 import {Book} from './book.js';
-import {Genre, IBookCollection} from './models.js';
+import {Genre, IProduct} from './models.js';
 import {Collection} from './collection.js';
 
 /**
  * Полка с литературой по программированию.
  */
-export const programmingLiterature: Collection<string, Book> = new Collection(); 
+export const programmingLiterature: Collection<Book> = new Collection(); 
 
 programmingLiterature.set(
   'Cracking the coging interview',
@@ -19,12 +19,18 @@ programmingLiterature.set(
   )
 );
 
-export const getFromMap = <K, V>(data: Collection<K, V>, key: K): V => {
-  const value = data.get(key);
+export class ProductCollection<T extends IProduct> extends Collection<T> {
+  get price (): number {
+    let totalPrice = 0;
+    const keys = Object.getOwnPropertyNames(this.items);
 
-  if (value === null) {
-    throw Error(`There are no item with key "${key}"`);
+    for (const key of keys) {
+      const item: T = this.items[key];
+      totalPrice += item.price;
+    }
+
+    return totalPrice;
   }
+}
 
-  return value;
-};
+export class BookCollection extends ProductCollection<Book> {}  

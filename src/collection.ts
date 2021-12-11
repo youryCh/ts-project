@@ -1,4 +1,4 @@
-export class Collection<K, V> {
+export class Collection<V, K extends number | string | symbol = string> {
   items: any = {};
 
   get size(): number {

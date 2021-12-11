@@ -1,24 +1,6 @@
 import {Book} from './book.js';
-import {programmingLiterature as books} from './book-collection.js';
 import {IRatingable, IProduct, Genre} from './models.js';
 import {genreMapping} from './constants.js';
-
-/**
- * Находит книгу по жанру и количеству страниц
- * 
- * @param {string} genre Жанр
- * @param {number} pageAmount Количество страниу
- * @returns {Book}
- */
-// export function findSuitableBook (genre: Genre, pageAmount: number, multipleRecommendations = true): Book | Book[] | undefined {
-//   const findAlgorithm = (book: Book) => book.genre === genre && book.price <= pageAmount;
-
-// if (multipleRecommendations) {
-//   return books.get(findAlgorithm);
-// }
-
-// return books.get(findAlgorithm());
-// }
 
 /**
  * Возвращает переданный параметром объект в виде строки.
@@ -37,7 +19,6 @@ export function serialize (value: unknown) {
 
   return value.toString();
 }
-
 
 /**
  * Показывает рейтинг книги или автора в виде звездочек.

@@ -1,5 +1,3 @@
-import {Book} from './book';
-
 export type TReview = [string, number, string];
 
 export interface IBook {

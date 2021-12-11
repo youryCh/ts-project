@@ -1,24 +1,42 @@
 import {Book} from './book.js';
-// import {findSuitableBook, getGenreName, showCart} from './utils.js';
-import {reviews, author, notepad} from './constants.js';
-import {Genre} from './models.js';
-import {getFromMap, programmingLiterature} from './book-collection.js';
+import {Genre, IAuthor} from './models.js';
+import {BookCollection, ProductCollection} from './book-collection.js';
+import {Collection} from './collection.js';
+import {Notepad} from './notepad.js';
 
-// const recommendedBook = findSuitableBook(Genre.fantasy, 1000);
+new Collection<Book, number>();
+new Collection<Book, number>();
+new Collection<Book, symbol>();
+new Collection<Book>();
 
-// if (recommendedBook instanceof Book) {
-//   console.log(recommendedBook.name);
-// } else {
-//   console.log(recommendedBook[0].name);
-// }
+const jkRowling: IAuthor = {
+  firstName: 'J. K.',
+  lastName: 'Rowling',
+  rating: 4.6,
+};
 
-const genre = Genre.horror;
-const price = 300;
+const harryPotter = new Book('Harry Potter', Genre.fantasy, 500, jkRowling);
 
-const book = new Book('Potterr', genre, price, author, reviews);
+const superNotepad = new Notepad('Super text', 44);
 
-// showCart([book, notepad]);
+const cart = new ProductCollection();
+cart.set(harryPotter.name, harryPotter);
+cart.set(superNotepad.name, superNotepad);
 
-// console.log(getGenreName(book.genre));
+const favoriteBooksShelf = new BookCollection();
+favoriteBooksShelf.set(harryPotter.name, harryPotter);
 
-console.log(getFromMap(programmingLiterature, 'Cracking the coging interview'));
+const getSummary = (collection: Collection<unknown>): string => {
+  if (collection instanceof BookCollection) {
+    return `Total ${cart.size} books on the shelf`;
+  }
+
+  if (collection instanceof ProductCollection) {
+    return `Total ${cart.price} for ${cart.size} items`;
+  }
+
+  return 'No special summary for this kind of collection';
+};  
+
+console.log(getSummary(cart));
+console.log(getSummary(favoriteBooksShelf));
