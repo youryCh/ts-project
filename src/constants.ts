@@ -6,7 +6,7 @@ export const reviews: TReview[] = [
   ['Sherlock', 0, 'I don\'t read this'],
 ];
 
-export const author: IAuthor = {
+export const author: Partial<IAuthor> = {
   firstName: 'Ivan',
   lastName: 'Denisovich',
   rating: 4,
