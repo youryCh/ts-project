@@ -1,15 +1,18 @@
 import {Book} from './book.js';
-import {Genre, IAuthor} from './models.js';
+import {Genre, IAuthor, IOptionalAuthor} from './models.js';
 import {BookCollection, ProductCollection} from './book-collection.js';
 import {Collection} from './collection.js';
 import {Notepad} from './notepad.js';
+import {getBookInfo} from './google-books.js';
+
+const harryPotterIsbn = '9781408845646';
 
 new Collection<Book, number>();
 new Collection<Book, number>();
 new Collection<Book, symbol>();
 new Collection<Book>();
 
-const jkRowling: IAuthor = {
+const jkRowling: Partial<IAuthor> = {
   firstName: 'J. K.',
   lastName: 'Rowling',
   rating: 4.6,
@@ -40,3 +43,26 @@ const getSummary = (collection: Collection<unknown>): string => {
 
 console.log(getSummary(cart));
 console.log(getSummary(favoriteBooksShelf));
+
+getBookInfo(harryPotterIsbn)
+  .then((book) => {
+    console.log(
+      book.volumeInfo.title,
+      book.volumeInfo.description,
+      book.volumeInfo.authors[0]
+    );
+  })
+  .catch((error) => console.error(error));
+
+const optionalAuthor: IOptionalAuthor = {
+  rating: 5,
+  booksWritten: 11,
+};
+
+const fullAuthor: Required<IOptionalAuthor> = {
+  firstName: '',
+  lastName: '',
+  birthDate: new Date(),
+  booksWritten: 1,
+  rating: 2,
+};

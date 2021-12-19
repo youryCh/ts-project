@@ -25,7 +25,7 @@ export class ProductCollection<T extends IProduct> extends Collection<T> {
     const keys = Object.getOwnPropertyNames(this.items);
 
     for (const key of keys) {
-      const item: T = this.items[key];
+      const item = this.items[key];
       totalPrice += item.price;
     }
 
