@@ -1,4 +1,5 @@
 import {
+  BookAuthor,
   Genre,
   IAuthor,
   IBook,
@@ -12,7 +13,7 @@ export class Book implements IBook, IRatingable, IProduct {
   genre: Genre;
   price: number;
   reviews?: TReview[];
-  author: Partial<IAuthor>;
+  author: BookAuthor;
   rating: number;
   getProductDescription(): string {
     return `Book "${this.name}" by ${this.author.firstName} ${this.author.lastName}`
@@ -22,7 +23,7 @@ export class Book implements IBook, IRatingable, IProduct {
     name: string,
     genre: Genre,
     price: number,
-    author: Partial<IAuthor>,
+    author: BookAuthor,
     reviews?: TReview[],
   ) {
     this.name = name;

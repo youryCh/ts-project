@@ -1,5 +1,5 @@
 import {Book} from './book.js';
-import {Genre, IAuthor, IOptionalAuthor} from './models.js';
+import {BookAuthor, Genre, IAuthor, IOptionalAuthor} from './models.js';
 import {BookCollection, ProductCollection} from './book-collection.js';
 import {Collection} from './collection.js';
 import {Notepad} from './notepad.js';
@@ -12,10 +12,10 @@ new Collection<Book, number>();
 new Collection<Book, symbol>();
 new Collection<Book>();
 
-const jkRowling: Partial<IAuthor> = {
+const jkRowling: BookAuthor = {
   firstName: 'J. K.',
   lastName: 'Rowling',
-  rating: 4.6,
+  // rating: 4.6,
 };
 
 const harryPotter = new Book('Harry Potter', Genre.fantasy, 500, jkRowling);
@@ -66,3 +66,31 @@ const fullAuthor: Required<IOptionalAuthor> = {
   booksWritten: 1,
   rating: 2,
 };
+
+const author: BookAuthor = {
+  firstName: 'J.K.',
+  lastName: 'Rowling',
+};
+
+const book = new Book('Harry Potter', Genre.fantasy, 100, author);
+
+console.log(book);
+
+const authorWithoutRating: Omit<IAuthor, 'rating'> = {
+  firstName: 'first name',
+  lastName: 'last name',
+  birthDate: new Date(),
+  booksWritten: 100500,
+};
+
+const newAuthor: Partial<IAuthor> = {};
+
+const anotherAuther: Readonly<IAuthor> = {
+  firstName: '',
+  lastName: '',
+  birthDate: new Date(),
+  booksWritten: 12,
+  rating: 1,
+};
+
+// anotherAuther.booksWritten = 1000;
