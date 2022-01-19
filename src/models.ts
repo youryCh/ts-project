@@ -55,4 +55,4 @@ export interface IOptionalAuthor extends Partial<IRatingable> {
   booksWritten?: number;
 }
 
-export type BookAuthor = Pick<IAuthor, 'firstName' | 'lastName'>
+export type BookAuthor = Pick<IAuthor, 'firstName' | 'lastName'>;

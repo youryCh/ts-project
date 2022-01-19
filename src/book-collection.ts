@@ -14,7 +14,7 @@ programmingLiterature.set(
     {
       firstName: 'Gayle',
       lastName: 'Laakmann',
-      rating: 5,
+      // rating: 5,
     },
   )
 );
