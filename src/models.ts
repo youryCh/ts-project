@@ -30,7 +30,7 @@ export interface IBookCollection<T> {
   [key: string]: T;
 }
 
-interface IGoogleapisBook {
+export interface IGoogleapisBook {
   id: string;
   kind: string;
   etag: string;
