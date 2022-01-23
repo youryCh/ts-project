@@ -9,8 +9,6 @@ export interface IBook {
 export interface IAuthor extends IRatingable {
     firstName: string;
     lastName: string;
-    birthDate: Date;
-    booksWritten: number;
 }
 export interface IRatingable {
     rating: number;

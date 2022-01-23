@@ -3,9 +3,12 @@ export declare class Book implements IBook, IRatingable, IProduct {
     name: string;
     genre: Genre;
     price: number;
-    reviews?: TReview[];
     author: BookAuthor;
-    rating: number;
-    getProductDescription(): string;
+    readonly rating: number;
+    readonly reviews: TReview[];
     constructor(name: string, genre: Genre, price: number, author: BookAuthor, reviews?: TReview[]);
+    getProductDescription(): string;
+    addReview(review: TReview): void;
+    removeReview(review: TReview): void;
+    calculateRating(): void;
 }
