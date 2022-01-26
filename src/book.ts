@@ -6,9 +6,11 @@ import {
   IProduct,
   IRatingable,
   TReview
-} from './models';
+} from './models.js';
+import {Product} from './product.js';
+import { IPurchaseContext } from './purchase-context.js';
 
-export class Book implements IRatingable, IProduct {
+export class Book extends Product implements IRatingable {
   name: string;
   genre: Genre;
   price: number;
@@ -23,6 +25,7 @@ export class Book implements IRatingable, IProduct {
     author: BookAuthor,
     reviews?: TReview[],
   ) {
+    super();
     this.name = name;
     this.genre = genre;
     this.price = price;
@@ -70,6 +73,16 @@ export class Book implements IRatingable, IProduct {
       this._rating = reviewSum / this.reviews.length;
     } else {
       this._rating = null;
+    }
+  }
+
+  protected calculateDiscount(context: IPurchaseContext): number {
+    const {cart: {items, totalSum}, user: {clientLevel}} = context ?? {};
+
+    if (items >= 3 && totalSum >= 3000) {
+      return this.price * 35 / 100;
+    } else {
+      return this.price * (clientLevel * 10) / 100;
     }
   }
 }

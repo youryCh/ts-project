@@ -8,6 +8,9 @@ export {getBookInfo} from './google-books.js';
 import {IAuthor} from './models.js';
 import {Book} from './book.js';
 import {Genre} from './models.js';
+import {Notepad} from './notepad.js';
+import {Product} from './product.js';
+import {IPurchaseContext} from './purchase-context.js';
 
 const author: IAuthor = {
   firstName: 'J.K.',
@@ -17,6 +20,27 @@ const author: IAuthor = {
 
 const book = new Book('Harry Potter', Genre.fantasy, 380, author);
 
-console.log(book.rating);
+const notepad = new Notepad('Notepad', 30);
 
-console.log(book.rating);
+const products: Product[] = [
+  book,
+  notepad
+];
+
+const context: IPurchaseContext = {
+  user: {
+    clientLevel: 1,
+  },
+  cart: {
+    items: products?.length,
+    totalSum: products?.reduce((acc, curr) => acc + curr.price, 0),
+  }
+}
+
+console.log(
+  `${book.getDiscountPrice(context)} instead of ${book.price}`,
+  '\n',
+  `${notepad.getDiscountPrice(context)} instead of ${notepad.price}`
+);
+
+// console.log(book.calculateDiscount(context));

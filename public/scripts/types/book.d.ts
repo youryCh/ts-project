@@ -1,14 +1,19 @@
-import { BookAuthor, Genre, IBook, IProduct, IRatingable, TReview } from './models';
-export declare class Book implements IBook, IRatingable, IProduct {
+import { BookAuthor, Genre, IRatingable, TReview } from './models.js';
+import { Product } from './product.js';
+import { IPurchaseContext } from './purchase-context.js';
+export declare class Book extends Product implements IRatingable {
     name: string;
     genre: Genre;
     price: number;
     author: BookAuthor;
-    readonly rating: number;
-    readonly reviews: TReview[];
+    private _rating;
+    private reviews;
     constructor(name: string, genre: Genre, price: number, author: BookAuthor, reviews?: TReview[]);
     getProductDescription(): string;
     addReview(review: TReview): void;
     removeReview(review: TReview): void;
-    calculateRating(): void;
+    get rating(): number;
+    getRreviews(): Readonly<TReview[]>;
+    private calculateRating;
+    protected calculateDiscount(context: IPurchaseContext): number;
 }
