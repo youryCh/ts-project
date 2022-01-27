@@ -5,12 +5,10 @@ export {Collection} from './collection.js';
 export {Notepad} from './notepad.js';
 export {getBookInfo} from './google-books.js';
 
-import {IAuthor} from './models.js';
+import {IAuthor, IPurchaseContext, Genre} from './models.js';
 import {Book} from './book.js';
-import {Genre} from './models.js';
 import {Notepad} from './notepad.js';
 import {Product} from './product.js';
-import {IPurchaseContext} from './purchase-context.js';
 
 const author: IAuthor = {
   firstName: 'J.K.',
@@ -42,5 +40,3 @@ console.log(
   '\n',
   `${notepad.getDiscountPrice(context)} instead of ${notepad.price}`
 );
-
-// console.log(book.calculateDiscount(context));

@@ -1,20 +1,16 @@
 import {
   BookAuthor,
   Genre,
-  IAuthor,
-  IBook,
-  IProduct,
   IRatingable,
-  TReview
+  TReview,
+  IPurchaseContext
 } from './models.js';
 import {Product} from './product.js';
-import { IPurchaseContext } from './purchase-context.js';
 
 export class Book extends Product implements IRatingable {
-  name: string;
-  genre: Genre;
-  price: number;
-  author: BookAuthor;
+  public name: string;
+  public genre: Genre;
+  public author: BookAuthor;
   private _rating: number;
   private reviews: TReview[];
     
@@ -25,10 +21,9 @@ export class Book extends Product implements IRatingable {
     author: BookAuthor,
     reviews?: TReview[],
   ) {
-    super();
+    super(price);
     this.name = name;
     this.genre = genre;
-    this.price = price;
     this.author = author;
 
     if (reviews) {
@@ -40,16 +35,16 @@ export class Book extends Product implements IRatingable {
     this.calculateRating ();
   }
 
-  getProductDescription (): string {
+  public getProductDescription (): string {
     return `Book "${this.name}" by ${this.author.firstName} ${this.author.lastName}`;
   }
 
-  addReview (review: TReview): void {
+  public addReview (review: TReview): void {
     this.reviews.push(review);
     this.calculateRating ();
   }
 
-  removeReview (review: TReview): void {
+  public removeReview (review: TReview): void {
     const index = this.reviews.indexOf(review);
 
     if (index > -1) {
@@ -58,31 +53,31 @@ export class Book extends Product implements IRatingable {
     }
   }
 
-  get rating (): number {
+  public get rating (): number {
     return this._rating;
   }
 
-  getRreviews (): Readonly<TReview[]> {
+  public getRreviews (): Readonly<TReview[]> {
     return this.reviews;
   }
 
   private calculateRating (): void {
-    if (this.reviews.length > 0) {
+    if (this.reviews?.length > 0) {
       const reviewSum = this.reviews.reduce((acc, curr) => acc + curr[1], 0);
 
-      this._rating = reviewSum / this.reviews.length;
+      this._rating = reviewSum / this.reviews?.length;
     } else {
       this._rating = null;
     }
   }
 
   protected calculateDiscount(context: IPurchaseContext): number {
-    const {cart: {items, totalSum}, user: {clientLevel}} = context ?? {};
+    const {cart: {items, totalSum}} = context ?? {};
 
     if (items >= 3 && totalSum >= 3000) {
       return this.price * 35 / 100;
     } else {
-      return this.price * (clientLevel * 10) / 100;
+      return super.calculateDiscount(context);
     }
   }
 }

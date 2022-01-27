@@ -1,23 +1,23 @@
 export class Collection<V, K extends number | string | symbol = string> {
-  items: Partial<Record<K, V>> = {};
+  public items: Partial<Record<K, V>> = {};
 
-  get size(): number {
+  public get size(): number {
     return Object.keys(this.items).length;
   }
 
-  set(key: K, value: V): void {
+  public set(key: K, value: V): void {
     this.items[key] = value;
   }
 
-  get(key: K): V {
+  public get(key: K): V {
     return this.items[key];
   }
 
-  has(key: K): boolean {
+  public has(key: K): boolean {
     return this.items[key] !== null;
   }
 
-  delete(key: K): boolean {
+  public delete(key: K): boolean {
     if (this.has(key)) {
       delete this.items[key];
       return true;
@@ -25,7 +25,7 @@ export class Collection<V, K extends number | string | symbol = string> {
     return false;
   }
 
-  clear(): void {
+  public clear(): void {
     this.items = {};
   }
 }

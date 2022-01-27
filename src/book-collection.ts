@@ -14,13 +14,12 @@ programmingLiterature.set(
     {
       firstName: 'Gayle',
       lastName: 'Laakmann',
-      // rating: 5,
     },
   )
 );
 
 export class ProductCollection<T extends IProduct> extends Collection<T> {
-  get price (): number {
+  public get price (): number {
     let totalPrice = 0;
     const keys = Object.getOwnPropertyNames(this.items);
 

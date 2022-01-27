@@ -1,13 +1,17 @@
-import {IPurchaseContext} from './purchase-context.js';
+import {IPurchaseContext} from './models.js';
 
 export class Product {
-  price: number;
+  public price: number;
 
-  getProductDescription (): string {
+  constructor (price: number) {
+    this.price = price;
+  }
+
+  public getProductDescription (): string {
     return 'Some product';
   }
 
-  getDiscountPrice (context: IPurchaseContext): number {
+  public getDiscountPrice (context: IPurchaseContext): number {
     return this.price - this.calculateDiscount(context);
   }
 

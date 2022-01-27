@@ -1,4 +1,11 @@
 export declare type TReview = [string, number, string];
+export declare type BookAuthor = Pick<IAuthor, 'firstName' | 'lastName'>;
+export declare enum Genre {
+    fantasy = 0,
+    adventure = 1,
+    horror = 2,
+    programming = 3
+}
 export interface IBook {
     name: string;
     genre: Genre;
@@ -16,12 +23,6 @@ export interface IRatingable {
 export interface IProduct {
     price: number;
     getProductDescription(): string;
-}
-export declare enum Genre {
-    fantasy = 0,
-    adventure = 1,
-    horror = 2,
-    programming = 3
 }
 export interface IBookCollection<T> {
     [key: string]: T;
@@ -48,4 +49,12 @@ export interface IOptionalAuthor extends Partial<IRatingable> {
     birthDate?: Date;
     booksWritten?: number;
 }
-export declare type BookAuthor = Pick<IAuthor, 'firstName' | 'lastName'>;
+export interface IPurchaseContext {
+    user: {
+        clientLevel: 1 | 2 | 3;
+    };
+    cart: {
+        items: number;
+        totalSum: number;
+    };
+}

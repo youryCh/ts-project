@@ -1,17 +1,14 @@
-import {IProduct} from './models';
 import {Product} from './product.js';
 
 export class Notepad extends Product {
-  name: string;
-  price: number;
+  public name: string;
 
   constructor (name: string, price: number) {
-    super();
+    super(price);
     this.name = name;
-    this.price = price;
   }
 
-  getProductDescription(): string {
+  public getProductDescription(): string {
     return `Notepad "${this.name}"`;  
   }
 
