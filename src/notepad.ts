@@ -1,11 +1,11 @@
 import {Product} from './product.js';
 
 export class Notepad extends Product {
-  public name: string;
-
-  constructor (name: string, price: number) {
+  constructor (
+    public name: string,
+    price: number
+  ) {
     super(price);
-    this.name = name;
   }
 
   public getProductDescription(): string {

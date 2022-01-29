@@ -27,3 +27,10 @@ export declare const showCart: (products: IProduct[]) => void;
  * @returns {string} - имя жанра в строковом виде
  */
 export declare const getGenreName: (genre: Genre) => string;
+/**
+ * Хелпер для работы с датами.
+ */
+export declare abstract class DateHelper {
+    static cloneDate(date: Date): Date;
+    static addDays(date: Date, days: number): Date;
+}

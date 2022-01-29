@@ -1,15 +1,9 @@
 import {IPurchaseContext} from './models.js';
 
-export class Product {
-  public price: number;
+export abstract class Product {
+  constructor (public price: number) {}
 
-  constructor (price: number) {
-    this.price = price;
-  }
-
-  public getProductDescription (): string {
-    return 'Some product';
-  }
+  public abstract getProductDescription (): string
 
   public getDiscountPrice (context: IPurchaseContext): number {
     return this.price - this.calculateDiscount(context);

@@ -65,3 +65,18 @@ export const showCart = (products: IProduct[]) => {
  * @returns {string} - имя жанра в строковом виде
  */
 export const getGenreName = (genre: Genre): string => genreMapping[genre];
+
+/**
+ * Хелпер для работы с датами.
+ */
+export abstract class DateHelper {
+  public static cloneDate (date: Date): Date {
+    return new Date(date.getTime());
+  }
+
+  public static addDays (date: Date, days: number): Date {
+    date.setDate(date.getDate() + days);
+
+    return date;
+  }
+}

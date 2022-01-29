@@ -6,6 +6,8 @@ export declare class Book extends Product implements IRatingable {
     author: BookAuthor;
     private _rating;
     private reviews;
+    private static itemsForIncreasedDiscount;
+    private static sumForIncreasedDiscount;
     constructor(name: string, genre: Genre, price: number, author: BookAuthor, reviews?: TReview[]);
     getProductDescription(): string;
     addReview(review: TReview): void;

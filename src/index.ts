@@ -9,6 +9,7 @@ import {IAuthor, IPurchaseContext, Genre} from './models.js';
 import {Book} from './book.js';
 import {Notepad} from './notepad.js';
 import {Product} from './product.js';
+import {DateHelper} from './utils.js';
 
 const author: IAuthor = {
   firstName: 'J.K.',
@@ -40,3 +41,8 @@ console.log(
   '\n',
   `${notepad.getDiscountPrice(context)} instead of ${notepad.price}`
 );
+
+const now = new Date();
+const weekAfter = DateHelper.addDays(DateHelper.cloneDate(now), 7);
+
+console.log(now, weekAfter);

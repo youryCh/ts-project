@@ -8,23 +8,19 @@ import {
 import {Product} from './product.js';
 
 export class Book extends Product implements IRatingable {
-  public name: string;
-  public genre: Genre;
-  public author: BookAuthor;
   private _rating: number;
   private reviews: TReview[];
+  private static itemsForIncreasedDiscount = 3;
+  private static sumForIncreasedDiscount = 3000;
     
   constructor (
-    name: string,
-    genre: Genre,
+    public name: string,
+    public genre: Genre,
     price: number,
-    author: BookAuthor,
+    public author: BookAuthor,
     reviews?: TReview[],
   ) {
     super(price);
-    this.name = name;
-    this.genre = genre;
-    this.author = author;
 
     if (reviews) {
       this.reviews = reviews;
@@ -73,8 +69,11 @@ export class Book extends Product implements IRatingable {
 
   protected calculateDiscount(context: IPurchaseContext): number {
     const {cart: {items, totalSum}} = context ?? {};
+    const hasDiscount: boolean = 
+      items >= Book.itemsForIncreasedDiscount &&
+      totalSum >= Book.sumForIncreasedDiscount;
 
-    if (items >= 3 && totalSum >= 3000) {
+    if (hasDiscount) {
       return this.price * 35 / 100;
     } else {
       return super.calculateDiscount(context);
