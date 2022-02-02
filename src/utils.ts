@@ -9,15 +9,15 @@ import {genreMapping} from './constants.js';
  * @returns {string} - сериализованный объект.
  */
 export function serialize (value: unknown) {
-  if (value === null || undefined) {
-    return value + '';
-  }
+    if (value === null || undefined) {
+        return value + '';
+    }
 
-  if (value instanceof Book) {
-    return `${value.name}, ${value.genre}, ${value.price}`;
-  }
+    if (value instanceof Book) {
+        return `${value.name}, ${value.genre}, ${value.price}`;
+    }
 
-  return value.toString();
+    return String(value);
 }
 
 /**
@@ -27,19 +27,19 @@ export function serialize (value: unknown) {
  * @returns {string} - рейтинг в виде *
  */
 export const showRating = (entity: IRatingable) => {
-  if (entity.rating === null) {
-    return 'not rated yet';
-  }
+    if (entity.rating === null) {
+        return 'not rated yet';
+    }
 
-  const roundedRating = Math.round(entity.rating);
+    const roundedRating = Math.round(entity.rating);
 
-  let rating = '';
+    let rating = '';
 
-  for (let i = 0; i < roundedRating; i++) {
-    rating += ' * ';
-  }
+    for (let i = 0; i < roundedRating; i++) {
+        rating += ' * ';
+    }
 
-  return rating + ` (${entity.rating.toFixed(2)})`;
+    return rating + ` (${entity.rating.toFixed(2)})`;
 }
 
 /**
@@ -49,13 +49,13 @@ export const showRating = (entity: IRatingable) => {
  * @returns {void}
  */
 export const showCart = (products: IProduct[]) => {
-  let totalPrice = 0;
-  products.forEach((product) => {
-    totalPrice += product.price;
-    console.log(`${product.getProductDescription()} x ${product.price} rub. `);
-  });
+    let totalPrice = 0;
+    products.forEach((product) => {
+        totalPrice += product.price;
+        console.log(`${product.getProductDescription()} x ${product.price} rub. `);
+    });
 
-  console.log(`\nTotal items: ${products.length}, total cost: ${totalPrice}`);
+    console.log(`\nTotal items: ${products.length}, total cost: ${totalPrice}`);
 }
 
 /**
@@ -64,19 +64,19 @@ export const showCart = (products: IProduct[]) => {
  * @param {Genre} genre - жанр из енама
  * @returns {string} - имя жанра в строковом виде
  */
-export const getGenreName = (genre: Genre): string => genreMapping[genre];
+export const getGenreName = (genre: Genre.adventure): string => genreMapping[genre];
 
 /**
  * Хелпер для работы с датами.
  */
 export abstract class DateHelper {
-  public static cloneDate (date: Date): Date {
-    return new Date(date.getTime());
-  }
+    public static cloneDate (date: Date): Date {
+        return new Date(date.getTime());
+    }
 
-  public static addDays (date: Date, days: number): Date {
-    date.setDate(date.getDate() + days);
+    public static addDays (date: Date, days: number): Date {
+        date.setDate(date.getDate() + days);
 
-    return date;
-  }
+        return date;
+    }
 }

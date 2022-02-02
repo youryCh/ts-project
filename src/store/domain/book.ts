@@ -6,7 +6,7 @@ export class Book {
         private readonly provider: string,
         public readonly originalId: string,
         public readonly name: string,
-        public readonly genre: Genre,
+        public readonly genre: Genre | undefined,
         public readonly description: string,
         public readonly pages: number,
         public readonly price: number,

@@ -8,5 +8,6 @@
     "declaration": true,
     "declarationDir": "public/scripts/types"
   },
+  "extends": "./src/tsconfig-checks.json",
   "include": ["src/**/*"]
 }

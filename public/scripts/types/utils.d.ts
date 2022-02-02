@@ -26,7 +26,7 @@ export declare const showCart: (products: IProduct[]) => void;
  * @param {Genre} genre - жанр из енама
  * @returns {string} - имя жанра в строковом виде
  */
-export declare const getGenreName: (genre: Genre) => string;
+export declare const getGenreName: (genre: Genre.adventure) => string;
 /**
  * Хелпер для работы с датами.
  */

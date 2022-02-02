@@ -35,14 +35,14 @@ export class OzonProvider implements IProvider {
     }
 
     private convertFilterToQueryString (filter: ISearchFilter): string {
-        return `search=${filter.name}&author=${filter.author.firstName} ${filter.author.lastName}`;
+        return `search=${filter.name}&author=${filter?.author?.firstName} ${filter?.author?.lastName}`;
     }
 
     private convertBookListResponse (response: IBookListResponse): Book[] {
         return response.items.map((item) => this.convertBookResponse(item));
     }
 
-    private convertBookResponse (item): Book {
+    private convertBookResponse (item: any): Book {
         return new Book(
             OzonProvider.provider,
             String(item.id),
@@ -58,7 +58,7 @@ export class OzonProvider implements IProvider {
         );
     }
 
-    private mapGenre (genre: string): Genre {
+    private mapGenre (genre: string): Genre | undefined {
         switch (genre) {
         case 'HORRORS': return Genre.Horror;
         case 'FICTIONS': return Genre.Fantasy;

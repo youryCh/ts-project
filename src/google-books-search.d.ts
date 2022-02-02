@@ -31,7 +31,7 @@ declare module 'google-books-search' {
   }
 
   export interface ICallback<R> {
-    (error?: Error, result?: R)
+    (error?: Error, result?: R): void;
   }
 
   export interface ISearchOptions {

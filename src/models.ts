@@ -16,7 +16,7 @@ export interface IAuthor extends IRatingable {
 }
 
 export interface IRatingable {
-  rating: number;
+  rating: number | null;
 }
 
 export interface IProduct {
