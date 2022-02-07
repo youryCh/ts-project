@@ -58,13 +58,13 @@ export class OzonProvider implements IProvider {
         );
     }
 
-    private mapGenre (genre: string): Genre | undefined {
+    private mapGenre (genre: string): Genre {
         switch (genre) {
         case 'HORRORS': return Genre.Horror;
         case 'FICTIONS': return Genre.Fantasy;
         case 'COMEDIES': return Genre.Comedy;
         case 'DRAMAS': return Genre.Drama;
-        default: Genre.Unknown;
+        default: return Genre.Unknown;
         }
     }
 }

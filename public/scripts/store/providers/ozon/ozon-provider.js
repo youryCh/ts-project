@@ -38,7 +38,7 @@ export class OzonProvider {
             case 'FICTIONS': return Genre.Fantasy;
             case 'COMEDIES': return Genre.Comedy;
             case 'DRAMAS': return Genre.Drama;
-            default: Genre.Unknown;
+            default: return Genre.Unknown;
         }
     }
 }

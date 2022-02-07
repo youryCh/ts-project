@@ -17,7 +17,7 @@ export class Book extends Product implements IRatingable {
     public genre: Genre,
     price: number,
     public author: BookAuthor,
-    private _rating?: number | null,
+    private _rating: number = 0,
     reviews?: TReview[],
     ) {
         super(price);
@@ -50,20 +50,20 @@ export class Book extends Product implements IRatingable {
     }
 
     public get rating (): number | null {
-        return this._rating =null;
+        return this._rating;
     }
 
     public getRreviews (): Readonly<TReview[]> {
         return this.reviews;
     }
 
-    private calculateRating (): void {
+    private calculateRating () {
         if (this.reviews?.length > 0) {
             const reviewSum = this.reviews.reduce((acc, curr) => acc + curr[1], 0);
 
             this._rating = reviewSum / this.reviews?.length;
         } else {
-            this._rating = 0;
+            this._rating;
         }
     }
 

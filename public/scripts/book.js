@@ -1,6 +1,6 @@
 import { Product } from './product.js';
 export class Book extends Product {
-    constructor(name, genre, price, author, _rating, reviews) {
+    constructor(name, genre, price, author, _rating = 0, reviews) {
         super(price);
         this.name = name;
         this.genre = genre;
@@ -29,7 +29,7 @@ export class Book extends Product {
         }
     }
     get rating() {
-        return this._rating || 0;
+        return this._rating;
     }
     getRreviews() {
         return this.reviews;
@@ -41,7 +41,7 @@ export class Book extends Product {
             this._rating = reviewSum / ((_b = this.reviews) === null || _b === void 0 ? void 0 : _b.length);
         }
         else {
-            this._rating = 0;
+            this._rating;
         }
     }
     calculateDiscount(context) {

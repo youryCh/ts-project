@@ -11,11 +11,12 @@ programmingLiterature.set('Cracking the coging interview', new Book('Cracking th
 }));
 export class ProductCollection extends Collection {
     get price() {
+        var _a;
         let totalPrice = 0;
         const keys = Object.getOwnPropertyNames(this.items);
         for (const key of keys) {
             const item = this.items[key];
-            totalPrice += (item === null || item === void 0 ? void 0 : item.price) || 0;
+            totalPrice += (_a = item === null || item === void 0 ? void 0 : item.price) !== null && _a !== void 0 ? _a : 0;
         }
         return totalPrice;
     }

@@ -3,6 +3,17 @@
         "alwaysStrict": true,
         "noImplicitAny": true,
         "strict": true,
-        "strictNullChecks": true
+        "strictNullChecks": true,
+        "strictPropertyInitialization": true,
+        "strictFunctionTypes": true,
+        "strictBindCallApply": true,
+        "noImplicitThis": true,
+        "useUnknownInCatchVariables": true,
+        "noPropertyAccessFromIndexSignature": true,
+        "noUncheckedIndexedAccess": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "noUnusedLocals": false,
+        "noUnusedParameters": false
     }
 }

@@ -9,7 +9,8 @@ export class Collection {
         this.items[key] = value;
     }
     get(key) {
-        return this.items[key];
+        var _a;
+        return (_a = this.items[key]) !== null && _a !== void 0 ? _a : null;
     }
     has(key) {
         return this.items[key] !== null;

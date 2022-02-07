@@ -71,6 +71,63 @@ function sortByPrice (one: Book, two: Book) {
 
 Promise.all([ozon.find(filter)])
     .then((result) => {
-        const allResults = [...result[0]];
-        // allResults.sort(sortByPrice);
+        if (result[0] !== undefined) {
+            const allResults = [...result[0]];
+            // allResults.sort(sortByPrice);
+        }
     })
+
+interface IRemoveBookFromFavorites {
+    (id: string | number): Promise<string | number>;
+}
+
+const removeBook: IRemoveBookFromFavorites = (id: string | number) => Promise.resolve(id);
+
+removeBook.call(null, 5);
+
+function printBookSummary (this: Book, printItalic = false) {
+    let openingTag = '';
+    let closingTag = '';
+
+    if (printItalic) {
+        openingTag = '<i>';
+        closingTag = '</i>';
+    }
+
+    console.log(`
+        ${openingTag}
+        Book ${this.name}
+        ${closingTag}
+    `);
+}
+
+printBookSummary.call(book, true);
+
+try {
+    throw new Error();
+} catch (error) {
+    if (error instanceof Error) {
+        console.log(error.message);
+    }
+}
+
+interface ISomeStructure {
+    id: string;
+    name: string;
+    [key: string]: string;
+}
+
+Promise.resolve<ISomeStructure>(
+    {
+        id: '5',
+        name: 'H',
+        author: 'sdf',
+    }
+).then((book) => {
+
+    book['author'] !== undefined &&
+    book['genre'] !== undefined
+        ?
+        console.log(book.name, book['author'].toUpperCase(), book['genre'].toLowerCase())
+        :   console.log('')
+})
